@@ -18,6 +18,8 @@ void InstallGameRules() {
 
 void ClientGamePrecache() {
 	CBaseEntity::PrecacheModel("models/player.mdl");
+	CBaseEntity::PrecacheScriptSound("Player.JumpFoley");
+	CBaseEntity::PrecacheScriptSound("Player.LandFoley");
 }
 
 void GameStartFrame() {
@@ -37,7 +39,6 @@ void ClientPutInServer(edict_t *pEdict, const char *playername) {
 
 void FinishClientPutInServer(CBasePlayer *pPlayer) {
 	pPlayer->InitialSpawn();
-	// Dying without a player model crashes the client
 	pPlayer->SetModel("models/player.mdl");
 	pPlayer->Spawn();
 }
