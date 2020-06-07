@@ -1,0 +1,44 @@
+//-----------------------------------------------------------------------------
+//	CLIENT_PAGEFAULT.VPC
+//
+//	Project Script
+//-----------------------------------------------------------------------------
+
+$Macro SRCDIR		"..\.."
+$Macro GAMENAME 	"pagefault"
+
+$Include "$SRCDIR\game\client\client_base.vpc"
+
+$Configuration
+{
+	$Compiler
+	{
+		$AdditionalIncludeDirectories		"$BASE;.\pagefault,$SRCDIR\game\shared\pagefault"
+		$PreprocessorDefinitions			"$BASE;PAGEFAULT_DLL"
+	}
+}
+
+$Project "Client (Pagefault)"
+{
+	$Folder	"Source Files"
+	{
+		$Folder	"Pagefault"
+		{
+			$File	"pagefault\clientmode_pf.cxx"
+			$File	"pagefault\pf_fx.cxx"
+			$File	"pagefault\pf_in_main.cxx"
+			$File	"pagefault\pf_prediction.cxx"
+			$File	"pagefault\vgui_rootpanel_pf.cxx"
+			$File	"pagefault\hud_weaponselection.cxx"
+
+			$Folder	"Shared"
+			{
+				$File	"$SRCDIR\game\shared\pagefault\pf_gamemovement.cxx"
+				$File	"$SRCDIR\game\shared\pagefault\pf_gamerules.cxx"
+				$File	"$SRCDIR\game\shared\pagefault\pf_player.cxx"
+				$File	"$SRCDIR\game\shared\pagefault\pf_player.hxx"
+				$File	"$SRCDIR\game\shared\pagefault\pf_usermessages.cxx"
+			}
+		}
+	}
+}

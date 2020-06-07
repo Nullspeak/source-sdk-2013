@@ -1,0 +1,64 @@
+//-----------------------------------------------------------------------------
+//	SERVER_PAGEFAULT.VPC
+//
+//	Project Script
+//-----------------------------------------------------------------------------
+
+$Macro SRCDIR		"..\.."
+$Macro GAMENAME 	"pagefault"
+
+$Include "$SRCDIR\game\server\server_base.vpc"
+$Include "$SRCDIR\game\server\nav_mesh.vpc"
+
+$Configuration
+{
+	$Compiler
+	{
+		$AdditionalIncludeDirectories		"$BASE;.\pagefault,$SRCDIR\game\shared\pagefault"
+		$PreprocessorDefinitions			"$BASE;PAGEFAULT_DLL"
+	}
+}
+
+$Project "Server (Pagefault)"
+{
+	$Folder	"Source Files"
+	{
+		$File	"$SRCDIR\game\shared\weapon_parse_default.cpp"
+		
+		$File	"ai_relationship.cpp"
+		$File	"basegrenade_concussion.cpp"
+		$File	"basegrenade_contact.cpp"
+		$File	"basegrenade_timed.cpp"
+		$File	"EntityFlame.h"
+		$File	"hl2\Func_Monitor.cpp"
+		$File	"grenadethrown.cpp"
+		$File	"grenadethrown.h"
+		$File	"h_cycler.cpp"
+		$File	"h_cycler.h"
+		$File	"monstermaker.cpp"
+		$File	"monstermaker.h"
+		$File	"physics_bone_follower.h"
+		$File	"$SRCDIR\game\shared\predicted_viewmodel.cpp"
+		$File	"$SRCDIR\game\shared\predicted_viewmodel.h"
+		$File	"$SRCDIR\game\shared\ragdoll_shared.h"
+		$File	"$SRCDIR\game\shared\solidsetdefaults.h"
+		$File	"weapon_cubemap.cpp"
+
+		$Folder	"Pagefault"
+		{
+			$File	"pagefault\pf_client.cxx"
+			$File	"pagefault\pf_eventlog.cxx"
+			$File	"pagefault\pf_gameinterface.cxx"
+			$File	"pagefault\pf_playermove.cxx"
+			
+			$Folder	"Shared"
+			{
+				$File	"$SRCDIR\game\shared\pagefault\pf_gamemovement.cxx"
+				$File	"$SRCDIR\game\shared\pagefault\pf_gamerules.cxx"
+				$File	"$SRCDIR\game\shared\pagefault\pf_player.cxx"
+				$File	"$SRCDIR\game\shared\pagefault\pf_player.hxx"
+				$File	"$SRCDIR\game\shared\pagefault\pf_usermessages.cxx"
+			}
+		}
+	}
+}
