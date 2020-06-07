@@ -30,6 +30,8 @@ $Project "Client (Pagefault)"
 			$File	"pagefault\pf_prediction.cxx"
 			$File	"pagefault\vgui_rootpanel_pf.cxx"
 			$File	"pagefault\hud_weaponselection.cxx"
+			$File	"pagefault\hud_chat.cxx"
+			$File	"pagefault\hud_chat.hxx"
 
 			$Folder	"Shared"
 			{

@@ -54,3 +54,11 @@ config.cfg
 # shader files
 *.tmp
 
+*.vpc_crc
+*.filters
+vc120.pdb
+*.sentinel
+mp/src/.vs
+
+# ignore the game files
+mp/game/pagefault
