@@ -267,8 +267,8 @@ void CHudCrosshair::Paint( void )
 #endif
 	float flWidth = flWeaponScale * flPlayerScale * (float)iTextureW;
 	float flHeight = flWeaponScale * flPlayerScale * (float)iTextureH;
-	int iWidth = (int)( flWidth + 0.5f );
-	int iHeight = (int)( flHeight + 0.5f );
+	int iWidth = (int)( flWidth + 0.5f )-2;
+	int iHeight = (int)( flHeight + 0.5f )-2;
 	int iX = (int)( x + 0.5f );
 	int iY = (int)( y + 0.5f );
 
