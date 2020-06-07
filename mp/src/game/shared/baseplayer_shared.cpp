@@ -517,7 +517,9 @@ void CBasePlayer::UpdateStepSound( surfacedata_t *psurface, const Vector &vecOri
 
 	if ( m_flStepSoundTime > 0 )
 	{
-		m_flStepSoundTime -= 1000.0f * gpGlobals->frametime;
+		// m_flStepSoundTime -= 1000.0f * gpGlobals->frametime;
+		/* sarah: dynamic footstep speed instead of two preset speeds */
+		m_flStepSoundTime -= (GetAbsVelocity().Length() * 8.0f) * gpGlobals->frametime;
 		if ( m_flStepSoundTime < 0 )
 		{
 			m_flStepSoundTime = 0;
@@ -548,7 +550,7 @@ void CBasePlayer::UpdateStepSound( surfacedata_t *psurface, const Vector &vecOri
 	bool movingalongground = ( groundspeed > 0.0001f );
 	bool moving_fast_enough =  ( speed >= velwalk );
 
-#ifdef PORTAL
+#if defined(PORTAL) || defined(PAGEFAULT_DLL)
 	// In Portal we MUST play footstep sounds even when the player is moving very slowly
 	// This is used to count the number of footsteps they take in the challenge mode
 	// -Jeep
@@ -563,7 +565,9 @@ void CBasePlayer::UpdateStepSound( surfacedata_t *psurface, const Vector &vecOri
 
 //	MoveHelper()->PlayerSetAnimation( PLAYER_WALK );
 
-	bWalking = speed < velrun;		
+	// bWalking = speed < velrun;
+	/* sarah: dynamic footstep speed instead of two preset speeds */
+	bWalking = true;
 
 	VectorCopy( vecOrigin, knee );
 	VectorCopy( vecOrigin, feet );
@@ -809,10 +813,11 @@ void CBasePlayer::SetStepSoundTime( stepsoundtimes_t iStepSoundTime, bool bWalki
 	}
 
 	// UNDONE: need defined numbers for run, walk, crouch, crouch run velocities!!!!	
+	/*
 	if ( ( GetFlags() & FL_DUCKING) || ( GetMoveType() == MOVETYPE_LADDER ) )
 	{
 		m_flStepSoundTime += 100;
-	}
+	}*/
 }
 
 Vector CBasePlayer::Weapon_ShootPosition( )
