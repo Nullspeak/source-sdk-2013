@@ -40,6 +40,11 @@ $Project "Client (Pagefault)"
 				$File	"$SRCDIR\game\shared\pagefault\pf_player.cxx"
 				$File	"$SRCDIR\game\shared\pagefault\pf_player.hxx"
 				$File	"$SRCDIR\game\shared\pagefault\pf_usermessages.cxx"
+				$File	"$SRCDIR\game\shared\pagefault\pf_baseweapon.cxx"
+				$File	"$SRCDIR\game\shared\pagefault\pf_baseweapon.hxx"
+				$File	"$SRCDIR\game\shared\pagefault\pf_viewmodel.cxx"
+				$File	"$SRCDIR\game\shared\pagefault\pf_viewmodel.hxx"
+				$File	"$SRCDIR\game\shared\pagefault\weapon_test.cxx"
 			}
 		}
 	}

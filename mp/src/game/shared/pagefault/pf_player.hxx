@@ -19,5 +19,9 @@ public:
 
 	virtual void Spawn(void);
 	virtual void PreThink(void);
+
+#ifdef GAME_DLL
+	virtual void CreateViewModel(int viewmodelindex = 0);
+#endif
 };
 #endif /* PF_PLAYER_HXX */
