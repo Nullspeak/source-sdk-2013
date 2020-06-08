@@ -10,8 +10,8 @@
 #define CPFPlayer C_PFPlayer
 #endif
 
-#define PF_PLAYER_SPEED_WALK 120.0f
-#define PF_PLAYER_SPEED_DASH 190.0f
+#define PF_PLAYER_SPEED_WALK 100.0f
+#define PF_PLAYER_SPEED_DASH 200.0f
 
 class CPFPlayer : public CBasePlayer {
 public:
@@ -23,5 +23,7 @@ public:
 #ifdef GAME_DLL
 	virtual void CreateViewModel(int viewmodelindex = 0);
 #endif
+private:
+	bool m_bSprinting{false};
 };
 #endif /* PF_PLAYER_HXX */
