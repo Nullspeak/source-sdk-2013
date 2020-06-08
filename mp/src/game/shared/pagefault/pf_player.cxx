@@ -6,7 +6,15 @@
 #include "in_buttons.h"
 #include "pf_player.hxx"
 
-static ConVar sv_dash_accelerate("sv_dash_accelerate", "1", FCVAR_CHEAT, "How fast the player will transition between walking and sprinting");
+IMPLEMENT_NETWORKCLASS_ALIASED(PFPlayer, DT_PFPlayer)
+
+BEGIN_NETWORK_TABLE(CPFPlayer, DT_PFPlayer)
+#ifdef CLIENT_DLL
+	RecvPropEHandle(RECVINFO(m_hInventoryItem))
+#else
+	SendPropEHandle(SENDINFO(m_hInventoryItem))
+#endif
+END_NETWORK_TABLE()
 
 LINK_ENTITY_TO_CLASS(player, CPFPlayer);
 
@@ -30,9 +38,9 @@ void CPFPlayer::PreThink(void) {
 	float curspeed = GetPlayerMaxSpeed();
 	float newspeed = 0.0f;
 	if(m_bSprinting)
-		newspeed = Lerp(gpGlobals->frametime * sv_dash_accelerate.GetFloat(), curspeed, PF_PLAYER_SPEED_DASH);
+		newspeed = Lerp(gpGlobals->frametime, curspeed, PF_PLAYER_SPEED_DASH);
 	else
-		newspeed = Lerp(gpGlobals->frametime * sv_dash_accelerate.GetFloat() * 2.0f, curspeed, PF_PLAYER_SPEED_WALK);
+		newspeed = Lerp(gpGlobals->frametime * 2.0f, curspeed, PF_PLAYER_SPEED_WALK);
 
 	SetMaxSpeed(newspeed);
 }
