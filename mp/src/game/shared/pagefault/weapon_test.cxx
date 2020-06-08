@@ -65,29 +65,16 @@ void CPFTestWeapon::PrimaryAttack(void) {
 	if(!pPlayer)
 		return;
 
-	if(m_iClip1 <= 0) {
-		if(!m_bFireOnEmpty) {
-			Reload();
-		} else {
-			WeaponSound(EMPTY);
-			m_flNextPrimaryAttack = 0.15;
-		}
-
-		return;
-	}
-
 	WeaponSound(SINGLE);
 	pPlayer->DoMuzzleFlash();
 
 	SendWeaponAnim(ACT_VM_PRIMARYATTACK);
 	pPlayer->SetAnimation(PLAYER_ATTACK1);
 
-	m_flNextPrimaryAttack = gpGlobals->curtime + 0.25;
-
-	m_iClip1--;
+	m_flNextPrimaryAttack = gpGlobals->curtime + 0.125;
 
 	Vector vecSrc = pPlayer->Weapon_ShootPosition();
-	Vector vecAiming = pPlayer->GetAutoaimVector(AUTOAIM_5DEGREES);
+	Vector vecAiming = pPlayer->GetAutoaimVector(AUTOAIM_10DEGREES);
 
 	FireBulletsInfo_t info(1, vecSrc, vecAiming, vec3_origin, MAX_TRACE_LENGTH, m_iPrimaryAmmoType);
 	info.m_pAttacker = pPlayer;

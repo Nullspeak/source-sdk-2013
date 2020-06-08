@@ -31,7 +31,7 @@ CAmmoDef *GetAmmoDef() {
 
 	static bool bInitialising = true;
 	if(bInitialising) {
-		ammo.AddAmmoType("pistol", DMG_BULLET, TRACER_RAIL, 200, 200, 180, 30, 0);
+		ammo.AddAmmoType("pistol", DMG_BULLET, TRACER_RAIL, 10, 10, 180, 30, 0);
 		bInitialising = false;
 	}
 
