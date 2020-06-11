@@ -170,9 +170,17 @@ void C_EnvProjectedTexture::UpdateLight( bool bForceUpdate )
 //			VectorNormalize( vUp );
 		}
 	}
-	else
-	{
-		AngleVectors( GetAbsAngles(), &vForward, &vRight, &vUp );
+	else {
+		// VXP: Fixing targeting
+		Vector vecToTarget;
+		QAngle vecAngles;
+		if(m_hTargetEntity == NULL) {
+			vecAngles = GetAbsAngles();
+		} else {
+			vecToTarget = m_hTargetEntity->GetAbsOrigin() - GetAbsOrigin();
+			VectorAngles(vecToTarget, vecAngles);
+		}
+		AngleVectors(vecAngles, &vForward, &vRight, &vUp);
 	}
 
 	state.m_fHorizontalFOVDegrees = m_flLightFOV;
@@ -220,16 +228,12 @@ void C_EnvProjectedTexture::UpdateLight( bool bForceUpdate )
 	}
 
 	g_pClientShadowMgr->SetFlashlightLightWorld( m_LightHandle, m_bLightWorld );
-
-	if ( bForceUpdate == false )
-	{
-		g_pClientShadowMgr->UpdateProjectedTexture( m_LightHandle, true );
-	}
+	g_pClientShadowMgr->UpdateProjectedTexture( m_LightHandle, true );
 }
 
 void C_EnvProjectedTexture::Simulate( void )
 {
-	UpdateLight( false );
+	UpdateLight(GetMoveParent() != NULL);
 
 	BaseClass::Simulate();
 }

@@ -26,6 +26,9 @@ public:
 
 	//void SetInventoryItem(CPFPropItem *item);
 	//void DropInventoryItem(void);
+#else
+	/* sarah: this is just a test */
+	virtual ShadowType_t ShadowCastType() { return SHADOWS_RENDER_TO_TEXTURE_DYNAMIC; }
 #endif
 private:
 	bool m_bSprinting{false};
