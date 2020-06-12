@@ -23,20 +23,11 @@ public:
 
 #ifdef GAME_DLL
 	virtual void CreateViewModel(int viewmodelindex = 0);
-
-	//void SetInventoryItem(CPFPropItem *item);
-	//void DropInventoryItem(void);
 #else
 	/* sarah: this is just a test */
 	virtual ShadowType_t ShadowCastType() { return SHADOWS_RENDER_TO_TEXTURE_DYNAMIC; }
 #endif
 private:
 	bool m_bSprinting{false};
-
-#ifdef CLIENT_DLL
-	EntityHandle_t m_hInventoryItem;
-#else
-	CNetworkHandle(EntityHandle_t, m_hInventoryItem);
-#endif
 };
 #endif /* PF_PLAYER_HXX */

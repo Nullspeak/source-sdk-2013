@@ -10,9 +10,7 @@ IMPLEMENT_NETWORKCLASS_ALIASED(PFPlayer, DT_PFPlayer)
 
 BEGIN_NETWORK_TABLE(CPFPlayer, DT_PFPlayer)
 #ifdef CLIENT_DLL
-	RecvPropEHandle(RECVINFO(m_hInventoryItem))
 #else
-	SendPropEHandle(SENDINFO(m_hInventoryItem))
 #endif
 END_NETWORK_TABLE()
 
@@ -38,9 +36,9 @@ void CPFPlayer::PreThink(void) {
 	float curspeed = GetPlayerMaxSpeed();
 	float newspeed = 0.0f;
 	if(m_bSprinting)
-		newspeed = Lerp(gpGlobals->frametime, curspeed, PF_PLAYER_SPEED_DASH);
+		newspeed = Lerp(gpGlobals->frametime * 4.0f, curspeed, PF_PLAYER_SPEED_DASH);
 	else
-		newspeed = Lerp(gpGlobals->frametime * 2.0f, curspeed, PF_PLAYER_SPEED_WALK);
+		newspeed = Lerp(gpGlobals->frametime * 4.0f, curspeed, PF_PLAYER_SPEED_WALK);
 
 	SetMaxSpeed(newspeed);
 }

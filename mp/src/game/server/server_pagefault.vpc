@@ -48,8 +48,6 @@ $Project "Server (Pagefault)"
 			$File	"pagefault\pf_eventlog.cxx"
 			$File	"pagefault\pf_gameinterface.cxx"
 			$File	"pagefault\pf_playermove.cxx"
-			$File	"pagefault\pf_prop_item.cxx"
-			$File	"pagefault\pf_prop_item.hxx"
 			
 			$Folder	"Shared"
 			{
